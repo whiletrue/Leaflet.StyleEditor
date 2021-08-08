@@ -8,10 +8,13 @@ import setupOpacityElement from './FormElements/OpacityElement'
 import setupPopupContentElement from './FormElements/PopupContentElement'
 import setupSizeElement from './FormElements/SizeElement'
 import setupWeightElement from './FormElements/WeightElement'
+import setupInputElement from './FormElements/InputElement'
+import setupTextareaElement from './FormElements/TextareaElement'
 
 import setupForm from './Form/Form'
 import setupGeometryForm from './Form/GeometryForm'
 import setupMarkerForm from './Form/MarkerForm'
+import setupTextboxForm from './Form/TextboxForm'
 
 import setupMarker from './Marker/Marker'
 import setupDefaultMarker from './Marker/DefaultMarker'
@@ -21,6 +24,7 @@ import setupStyleForm from './StyleForm'
 import setupControl from './Control'
 
 import setupUtil from './Util'
+
 
 require('../css/Leaflet.StyleEditor.css')
 
@@ -64,10 +68,13 @@ setupOpacityElement()
 setupPopupContentElement()
 setupSizeElement()
 setupWeightElement()
+setupInputElement()
+setupTextareaElement()
 
 setupForm()
 setupGeometryForm()
 setupMarkerForm()
+setupTextboxForm()
 
 setupMarker()
 setupDefaultMarker()

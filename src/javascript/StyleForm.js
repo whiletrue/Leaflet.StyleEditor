@@ -7,6 +7,7 @@ export default function setupStyleForm () {
 
       this.createMarkerForm()
       this.createGeometryForm()
+      this.createTextboxForm();
 
       this.addDOMEvents()
     },
@@ -19,6 +20,7 @@ export default function setupStyleForm () {
     clearForm: function () {
       this.options.styleEditorOptions.markerForm.hide()
       this.options.styleEditorOptions.geometryForm.hide()
+      this.options.styleEditorOptions.textboxForm.hide()
     },
 
     createMarkerForm: function () {
@@ -33,6 +35,12 @@ export default function setupStyleForm () {
       this.options.styleEditorOptions.geometryForm.create(markerDiv)
     },
 
+    createTextboxForm: function() {
+      let markerDiv = L.DomUtil.create(
+        'div', 'leaflet-styleeditor-interior-geometry', this.options.styleEditorInterior)
+      this.options.styleEditorOptions.textboxForm.create(markerDiv)
+    },
+
     showMarkerForm: function () {
       this.clearForm()
       this.options.styleEditorOptions.markerForm.show()
@@ -41,6 +49,11 @@ export default function setupStyleForm () {
     showGeometryForm: function () {
       this.clearForm()
       this.options.styleEditorOptions.geometryForm.show()
+    },
+
+    showTextboxForm: function() {
+      this.clearForm()
+      this.options.styleEditorOptions.textboxForm.show()
     },
 
     fireChangeEvent: function (element) {
@@ -61,6 +74,7 @@ export default function setupStyleForm () {
 
       this.options.styleEditorOptions.markerForm.lostFocus()
       this.options.styleEditorOptions.geometryForm.lostFocus()
+      this.options.styleEditorOptions.textboxForm.lostFocus()
     }
   })
 }

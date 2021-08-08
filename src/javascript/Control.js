@@ -1,4 +1,6 @@
 import 'leaflet'
+//import L from 'leaflet-styleeditor';
+import {SVGTextBox} from 'leaflet-text';
 
 export default function setupControl () {
   L.Control.StyleEditor = L.Control.extend({
@@ -16,6 +18,8 @@ export default function setupControl () {
       defaultMarkerColor: null,
 
       geometryForm: L.StyleEditor.forms.GeometryForm,
+
+      textboxForm: L.StyleEditor.forms.TextboxForm,
 
       ignoreLayerTypes: [],
 
@@ -56,6 +60,8 @@ export default function setupControl () {
       this.options.markerForm = new this.options.markerType.markerForm({styleEditorOptions: this.options})
       // eslint-disable-next-line new-cap
       this.options.geometryForm = new this.options.geometryForm({styleEditorOptions: this.options})
+      // eslint-disable-next-line new-cap
+      this.options.textboxForm = new this.options.textboxForm({styleEditorOptions: this.options});
 
       this.getDefaultIcon = this.options.markerType._createMarkerIcon.bind(this.options.markerType)
       this.createIcon = this.options.markerType.createMarkerIcon.bind(this.options.markerType)
@@ -333,11 +339,14 @@ export default function setupControl () {
       }
 
       this.fireEvent('editing', layer)
+      //console.log('change style', layer instanceof SVGTextBox);
       if (layer instanceof L.Marker) {
         // ensure iconOptions are set for Leaflet.Draw created Markers
         this.options.markerType.resetIconOptions()
         // marker
         this.showMarkerForm(layer)
+      } else if (layer instanceof SVGTextBox) {
+        this.showTextboxForm(layer);
       } else {
         // layer with of type L.GeoJSON or L.Path (polyline, polygon, ...)
         this.showGeometryForm(layer)
@@ -352,6 +361,11 @@ export default function setupControl () {
     showMarkerForm: function (layer) {
       this.fireEvent('marker', layer)
       this.options.styleForm.showMarkerForm()
+    },
+
+    showTextboxForm: function(layer) {
+      this.fireEvent('textbox', layer);
+      this.options.styleForm.showTextboxForm();
     },
 
     createTooltip: function () {
