@@ -39,7 +39,8 @@
     "StyleEditor"
   ],
   "dependencies": {
-    "leaflet": "^1.7.1"
+    "leaflet": "^1.7.1",
+    "leaflet-text": "^0.0.2"
   },
   "scripts": {
     "lint": "./node_modules/.bin/eslint . ./**/*.js",
